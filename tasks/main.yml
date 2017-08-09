@@ -9,6 +9,15 @@
       paths:
         - '{{ role_path }}/vars'
 
+- name: install prerequisite packages
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - bzip2
+    - tar
+
 - name: check for installation of Anaconda
   become: yes
   stat:
